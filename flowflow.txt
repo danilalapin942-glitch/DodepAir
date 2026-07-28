@@ -1,0 +1,52 @@
+{
+    "flow": {
+        "freestream_velocity": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "gamma": 1.4,
+        "freestream_mach_number": 0.1
+    },
+    "geometry": {
+        "file": "geometry/mig29.stl",
+        "singularity_order": "lower",
+        "wake_model": {
+            "wake_present": true,
+            "append_wake": true,
+            "wake_shedding_angle": 90.0,
+            "N_panels": 1
+        },
+        "reference": {
+            "area": 409.0286
+        }
+    },
+    "solver": {
+        "formulation": "dirichlet-morino",
+        "control_point_offset": 1e-07,
+        "control_point_offset_type": "direct",
+        "run_checks": true,
+        "matrix_solver": "GMRES",
+        "tolerance": 1e-10,
+        "max_iterations": 1000,
+        "preconditioner": "DIAG",
+        "sort_system": true
+    },
+    "post_processing": {
+        "pressure_rules": {
+            "incompressible": false,
+            "isentropic": true,
+            "second-order": false,
+            "slender-body": false,
+            "linear": false
+        },
+        "pressure_for_forces": "isentropic"
+    },
+    "output": {
+        "verbose": true,
+        "body_file": "results/mig29_M01_a00_body.vtk",
+        "wake_file": "results/mig29_M01_a00_wake.vtk",
+        "control_point_file": "results/mig29_M01_a00_control_points.vtk",
+        "report_file": "results/mig29_M01_a00_report.json"
+    }
+}
